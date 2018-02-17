@@ -1,7 +1,7 @@
 from flickrapi import FlickrAPI, FlickrError, shorturl
 import praw
-import config
-
+import argparse
+import config_my as config
 
 def search_flickr_sorted(searchpage, flickrtaglist):
     """
@@ -30,7 +30,7 @@ def search_flickr_sorted(searchpage, flickrtaglist):
     return [i[0] for i in photolist]
 
 
-def linkpost_reddit(subredditname, post_title, taglist):
+def linkpost_reddit(subredditname, submissiontitle, taglist):
     reddit = praw.Reddit(client_id=config.reddit_clientid,
                          client_secret=config.reddit_clientsecret,
                          user_agent=config.reddit_useragent,
@@ -45,7 +45,7 @@ def linkpost_reddit(subredditname, post_title, taglist):
 
     while not is_submitted:
         try:
-            submission = subreddit.submit(title=post_title, url=photolist[photo_counter], resubmit=False)
+            submission = subreddit.submit(title=submissiontitle, url=photolist[photo_counter], resubmit=False)
             is_submitted = True
         except praw.exceptions.APIException:
             print('Already submitted: ' + str(photo_counter) + ':' + str(page_counter) + '  (photo:page)')
@@ -60,4 +60,11 @@ def linkpost_reddit(subredditname, post_title, taglist):
 
 
 if __name__ == "__main__":
-    linkpost_reddit('subreddit', 'title of submission', ['tag1', 'tag2', 'tag3'])
+    # example: main.py -s Subredditname -i "Title of the Submission" -t "tag1a tag1b" "tag2a tag2b" "tag3"
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--tags', '-t', nargs='+', type=str, dest='tags', default=[])
+    parser.add_argument('--submtitle', '-i', type=str)
+    parser.add_argument('--subname', '-s', type=str)
+    a = parser.parse_args()
+    print(a)
+    linkpost_reddit(subredditname=a.subname, submissiontitle=a.submtitle, taglist=a.tags)
