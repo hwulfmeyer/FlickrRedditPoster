@@ -1,8 +1,9 @@
 from flickrapi import FlickrAPI, FlickrError, shorturl
 import praw
 import argparse
-# edit config.py to your settings and add "import config" and delete this line
-import config_my as config
+import json
+# edit config.json and change open statement to 'config.json'
+config = json.load(open('my_config.json'))
 
 
 def search_flickr_sorted(searchpage, taglist):
@@ -12,7 +13,7 @@ def search_flickr_sorted(searchpage, taglist):
     :param taglist: list of tags(strings) seperate by comma
     :return: list where every element is a link(string) to a flickr photo
     """
-    flickr = FlickrAPI(config.flickr_apikey, '', format='parsed-json')
+    flickr = FlickrAPI(config["flickr"]["apikey"], '', format='parsed-json')
     photolist = []
     photoset = None
     try:
@@ -40,11 +41,11 @@ def linkpost_reddit(subredditname, submissiontitle, taglist):
     :param taglist: list of tags(strings) seperate by comma
     :return: None
     """
-    reddit = praw.Reddit(client_id=config.reddit_clientid,
-                         client_secret=config.reddit_clientsecret,
-                         user_agent=config.reddit_useragent,
-                         username=config.reddit_username,
-                         password=config.reddit_password)
+    reddit = praw.Reddit(client_id=config["reddit"]["clientid"],
+                         client_secret=config["reddit"]["clientsecret"],
+                         user_agent=config["reddit"]["useragent"],
+                         username=config["reddit"]["username"],
+                         password=config["reddit"]["password"])
     subreddit = reddit.subreddit(subredditname)
     submission = None
     is_submitted = False
