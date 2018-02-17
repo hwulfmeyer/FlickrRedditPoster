@@ -12,8 +12,7 @@ Reddit API Doc: https://www.reddit.com/dev/api
 You run the program in the commandline, specifiy a subreddit, a submission title and a 
 arbitrary number of tags to search for (on flickr).  
 The programm will fetch a result page with 100 photos and will try to submit one photo to the specified subreddit.
-If has been already submitted it will go for the next photo and so on. If all photos on one result page have been submitted
-it will fetch the second result page and go on with that.
+If it has been already submitted the script will go for the next photo and so on. If all photos on one result page already have been submitted it will fetch the second result page and go on with that.  
 This goes as long as it hasn't succesfully submitted a photo.
 
 
