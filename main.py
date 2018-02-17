@@ -3,7 +3,7 @@ import praw
 import argparse
 import json
 # edit config.json and change open statement to 'config.json'
-config = json.load(open('my_config.json'))
+config = json.load(open('config.json'))
 
 
 def search_flickr_sorted(searchpage, taglist):
@@ -69,11 +69,15 @@ def linkpost_reddit(subredditname, submissiontitle, taglist):
 
 
 if __name__ == "__main__":
-    # example: main.py -s Subredditname -i "Title of the Submission" -t "tag1a tag1b" "tag2a tag2b" "tag3"
+    # example: main.py -s Subredditname -i "Title of the Submission" -t "tag1a tag1b" "tag3"
     parser = argparse.ArgumentParser()
     parser.add_argument('--tags', '-t', nargs='+', type=str, dest='tags', default=[])
     parser.add_argument('--submtitle', '-i', type=str)
     parser.add_argument('--subname', '-s', type=str)
     a = parser.parse_args()
     print(a)
+    assert a.subname is not None, 'Subreddit name is required! e.g. -s SubredditName'
+    assert a.submtitle is not None, 'Submission name is required! e.g. -i \"Title of the Submission\"'
+    assert len(a.tags) > 0, 'Search tags are required! e.g. -t \"tag1a tag1b\" \"tag3\"'
+
     linkpost_reddit(subredditname=a.subname, submissiontitle=a.submtitle, taglist=a.tags)
