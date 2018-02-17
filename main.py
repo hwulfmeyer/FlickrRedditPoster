@@ -1,20 +1,22 @@
 from flickrapi import FlickrAPI, FlickrError, shorturl
 import praw
 import argparse
+# edit config.py to your settings and add "import config" and delete this line
 import config_my as config
 
-def search_flickr_sorted(searchpage, flickrtaglist):
+
+def search_flickr_sorted(searchpage, taglist):
     """
     Searches flickr for photos with specific tags
     :param searchpage: the result-page to return from the search, starts at 1
-    :param flickrtaglist: list of tags(strings) seperate by comma
+    :param taglist: list of tags(strings) seperate by comma
     :return: list where every element is a link(string) to a flickr photo
     """
     flickr = FlickrAPI(config.flickr_apikey, '', format='parsed-json')
     photolist = []
     photoset = None
     try:
-        photoset = flickr.photos.search(tags=flickrtaglist,
+        photoset = flickr.photos.search(tags=taglist,
                                         sort='relevance',
                                         tag_mode='all',
                                         media="photos",
@@ -31,6 +33,13 @@ def search_flickr_sorted(searchpage, flickrtaglist):
 
 
 def linkpost_reddit(subredditname, submissiontitle, taglist):
+    """
+
+    :param subredditname: name of the subreddit to submit to
+    :param submissiontitle: title of the submission
+    :param taglist: list of tags(strings) seperate by comma
+    :return: None
+    """
     reddit = praw.Reddit(client_id=config.reddit_clientid,
                          client_secret=config.reddit_clientsecret,
                          user_agent=config.reddit_useragent,
