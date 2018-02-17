@@ -63,9 +63,8 @@ def linkpost_reddit(subredditname, submissiontitle, taglist):
                 page_counter = page_counter + 1
                 photo_counter = 0
                 photolist = search_flickr_sorted(page_counter, taglist)
-    if is_submitted:
-        print("Sucessfully submitted new Photo: " + str(submission.shortlink)
-              + '   ' + str(photo_counter) + ':' + str(page_counter) + '  (photo:page)')
+    print("Sucessfully submitted new Photo: " + str(submission.shortlink)
+          + '   ' + str(photo_counter) + ':' + str(page_counter) + '  (photo:page)')
 
 
 if __name__ == "__main__":
