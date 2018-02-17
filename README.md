@@ -18,9 +18,11 @@ This goes as long as it hasn't succesfully submitted a photo.
 
 ## How to use?
 
-The rogram works as a commandline script.  
-Run it like so: main.py -s "Subredditname" -i "Title of the Submission" -t "tag1a tag1b" "tag2a tag2b" "tag3"  
+Either download the source code and run it yourself or you may download windows binaries (see releases).
+
+The rogram works with the commandline.  
+Run it like so: s "Subredditname" -i "Title of the Submission" -t "tag1a tag1b" "tag2a tag2b" "tag3"  
 It will automatically do everything and will print out some "debug" statements.
-Befor you can run it you have to adapt the config.py and change the import statement in the main.py for the config.py.
+Befor you can run it you have to adapt the config.json.
 Adapting the config.py also means you have to get your own api access keys etc. from flickr and reddit.  
-You also have to install the above listed libraries on your system.
+When using the source code you also have to install the above listed libraries on your system.
