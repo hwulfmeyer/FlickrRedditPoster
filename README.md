@@ -24,5 +24,5 @@ The rogram works with the commandline.
 Run it like so: s "Subredditname" -i "Title of the Submission" -t "tag1a tag1b" "tag2a tag2b" "tag3"  
 It will automatically do everything and will print out some "debug" statements.
 Befor you can run it you have to adapt the config.json.
-Adapting the config.py also means you have to get your own api access keys etc. from flickr and reddit.  
+Adapting the config.json also means you have to get your own api access keys etc. from flickr and reddit.  
 When using the source code you also have to install the above listed libraries on your system.
