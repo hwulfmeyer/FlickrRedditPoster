@@ -2,6 +2,7 @@ from flickrapi import FlickrAPI, FlickrError, shorturl
 import praw
 import argparse
 import json
+import time
 # edit config.json and change open statement to 'config.json'
 config = json.load(open('config.json'))
 
@@ -52,8 +53,8 @@ def linkpost_reddit(subredditname, submissiontitle, taglist):
     photo_counter = 0
     page_counter = 1
     photolist = search_flickr_sorted(page_counter, taglist)
-
     while not is_submitted:
+        time.sleep(2)
         try:
             submission = subreddit.submit(title=submissiontitle, url=photolist[photo_counter], resubmit=False)
             is_submitted = True
