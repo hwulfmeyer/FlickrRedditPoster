@@ -21,7 +21,7 @@ This goes as long as it hasn't succesfully submitted a photo.
 Either download the source code and run it yourself or you may download windows binaries (see releases).
 
 The rogram works with the commandline.  
-Run it like so: s "Subredditname" -i "Title of the Submission" -t "tag1a tag1b" "tag2a tag2b" "tag3"  
+Run it like so: -s "Subredditname" -i "Title of the Submission" -t "tag1a tag1b" "tag2a tag2b" "tag3"  
 It will automatically do everything and will print out some "debug" statements.
 Befor you can run it you have to adapt the config.json.
 Adapting the config.json also means you have to get your own api access keys etc. from flickr and reddit.  
